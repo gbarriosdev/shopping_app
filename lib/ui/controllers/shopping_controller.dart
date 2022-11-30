@@ -1,4 +1,6 @@
-import 'package:get/get.dart';
+//import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart' show GetxController;
+import 'package:get/get_rx/get_rx.dart';
 import 'package:loggy/loggy.dart';
 
 import '../../domain/product.dart';
@@ -17,28 +19,44 @@ class ShoppingController extends GetxController {
     entries.add(Product(1, "Toy house", 20));
   }
 
-  void calcularTotal() {
+  var cantidad = 0;
+
+  calcularTotal() {
     int newTotal = 0;
-    // TODO
+    var citems = entries.length;
+    logInfo('items $citems');
+    // TOD
     // calcular el valor total de los elementos en el carro de compras
+    for (int i = 0; i < entries.length; i++) {
+      newTotal = newTotal + entries[i].price * entries[i].quantity;
+    }
     total.value = newTotal;
+    logInfo('total $total');
+    return total;
   }
 
   agregarProducto(id) {
     logInfo('agregarProducto $id');
-    // TODO
-    // Encontrar el elemento usando el id, revisar el método firstWhere de la lista
-    // después obtener el index de ese elemento, revisar el método indexOf de la lista
-    // después hacer el incremento en la cantidad
-    // finalmente actualizar entries usando el indice y el elemento actualizado
+    var proActual = entries.firstWhere((e) => e.id == id);
+    var indice = entries.indexOf(proActual);
+    entries[indice].quantity = entries[indice].quantity + 1;
+    var cantidad = entries[indice].quantity;
+    logInfo('produco actual $cantidad');
     calcularTotal();
+    entries.refresh();
   }
 
   quitarProducto(id) {
     logInfo('quitarProducto $id');
-    // TODO
-    // similar a agregarProducto
-    // validar cuando la cantidad es igual a cero
+    var proActual = entries.firstWhere((e) => e.id == id);
+    var indice = entries.indexOf(proActual);
+    var cantidad = entries[indice].quantity;
+    cantidad = cantidad - 1;
+    if (cantidad < 0) {
+      cantidad = 0;
+    }
+    entries[indice].quantity = cantidad;
     calcularTotal();
+    entries.refresh();
   }
 }
