@@ -23,14 +23,12 @@ class ShoppingController extends GetxController {
 
   calcularTotal() {
     int newTotal = 0;
-    var citems = entries.length;
-    logInfo('items $citems');
 
     for (int i = 0; i < entries.length; i++) {
       newTotal = newTotal + entries[i].price * entries[i].quantity;
     }
     total.value = newTotal;
-    return newTotal;
+    logInfo('total $newTotal');
   }
 
   agregarProducto(id) {

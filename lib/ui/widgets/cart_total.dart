@@ -9,13 +9,13 @@ class CartTotal extends StatelessWidget {
   final ShoppingController shoppingController = Get.find();
   @override
   Widget build(BuildContext context) {
-    var calcularTotal = shoppingController.calcularTotal();
-    logInfo('totaltotal $calcularTotal');
-    return const Expanded(
+    var totaltotal = shoppingController.total;
+    logInfo('totaltotal $totaltotal');
+    return Expanded(
       child: Center(
         //TOD
         // aquí debemos observar la variable total del shoppingController
-        child: Text('Total: ' + shoppingController.total.toString() + ' usd',
+        child: Text('Total: ${shoppingController.total} usd',
             style: TextStyle(
                 fontSize: 25.0,
                 color: Colors.blueGrey,

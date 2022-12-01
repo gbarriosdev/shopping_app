@@ -70,19 +70,11 @@ class _ProductListState extends State<ProductList> {
           children: [
             IconButton(
                 onPressed: () {
-                  // TOD
-                  // aquí debemos llamar al método del controlador que
-                  // incrementa el número de unidades del producto
-                  // pasandole el product.id
                   shoppingController.agregarProducto(product.id);
                 },
                 icon: const Icon(Icons.arrow_upward)),
             IconButton(
                 onPressed: () {
-                  // TO
-                  // aquí debemos llamar al método del controlador que
-                  // disminuye el número de unidades del producto
-                  // pasandole el product.id
                   shoppingController.quitarProducto(product.id);
                 },
                 icon: const Icon(Icons.arrow_downward))
